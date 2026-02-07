@@ -61,6 +61,28 @@ button {
   margin-right: auto;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   line-height: 1.6;
+  z-index: 5;
+  position: relative;
+}
+
+/* 🌸 Floating elements */
+.float {
+  position: fixed;
+  bottom: -40px;
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.4);
+    opacity: 0;
+  }
 }
 </style>
 </head>
@@ -141,34 +163,47 @@ noBtn.addEventListener("mouseover", () => {
   yesBtn.style.fontSize = yesSize + "px";
 });
 
+// 💕 Soft floating hearts always
+function createSoftHeart() {
+  let el = document.createElement("div");
+  el.className = "float";
+  let hearts = ["💗","💖","💕"];
+  el.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.fontSize = (20 + Math.random() * 30) + "px";
+  el.style.animationDuration = (6 + Math.random() * 6) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 12000);
+}
+setInterval(createSoftHeart, 700);
+
+// 🌹 Special Valentine animation when letter opens
+function createValentineElements() {
+  let el = document.createElement("div");
+  el.className = "float";
+
+  let items = ["🌹","🖤","🤍","❤️","💗"];
+  el.innerHTML = items[Math.floor(Math.random() * items.length)];
+
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.fontSize = (25 + Math.random() * 40) + "px";
+  el.style.animationDuration = (7 + Math.random() * 7) + "s";
+  el.style.zIndex = 2;
+
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 15000);
+}
+
 yesBtn.addEventListener("click", () => {
   document.querySelector("h1").style.display = "none";
   document.querySelector(".buttons").style.display = "none";
   note.style.display = "none";
   document.getElementById("letter").style.display = "block";
 
-  for (let i = 0; i < 120; i++) {
-    let conf = document.createElement("div");
-    conf.innerHTML = "💖";
-    conf.style.position = "fixed";
-    conf.style.left = Math.random() * 100 + "%";
-    conf.style.top = "-10px";
-    conf.style.fontSize = "22px";
-    conf.style.animation = "fall 3s linear";
-    document.body.appendChild(conf);
-    setTimeout(() => conf.remove(), 3000);
-  }
+  // 🌸 start romantic animation behind letter
+  setInterval(createValentineElements, 500);
 });
 </script>
-
-<style>
-@keyframes fall {
-  to {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-}
-</style>
 
 </body>
 </html>
