@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Will You Be My Valentine?</title>
+<style>
+body {
+  background: linear-gradient(135deg, #ffe6f0, #fff);
+  font-family: Poppins, sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+h1 {
+  color: #ff4d88;
+  margin-top: 100px;
+  font-size: 40px;
+}
+
+.buttons {
+  margin-top: 40px;
+}
+
+button {
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: #ff4d88;
+  color: white;
+  margin-right: 20px;
+}
+
+#noBtn {
+  background: #333;
+  color: white;
+  position: absolute;
+}
+
+#note {
+  margin-top: 20px;
+  color: #ff4d88;
+  font-size: 18px;
+  height: 30px;
+}
+
+#letter {
+  display: none;
+  margin-top: 50px;
+  font-size: 20px;
+  color: #222;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  width: 65%;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<h1>Will you be my Valentine? 💖</h1>
+
+<div class="buttons">
+  <button id="yesBtn">YES 💕</button>
+  <button id="noBtn">NO 🙃</button>
+</div>
+
+<div id="note"></div>
+
+<div id="letter">
+  <p><b>Kanna!!!🤍</b></p>
+
+  <p>
+  So… you really said yes.<br>
+  I guess I officially get to call you mine this Valentine’s Day.<br><br>
+
+  I hope you know what you just signed up for —<br>
+  someone who thinks about you a little too much,<br>
+  gets happy over the smallest messages from you,<br>
+  and secretly enjoys having you all to herself.<br><br>
+
+  I like the way you make me feel without even trying.<br>
+  With you, even distance feels lighter,<br>
+  and every conversation feels a little more special.<br><br>
+
+  Honestly, if you were here right now,<br>
+  I wouldn’t be writing this letter at all —<br>
+  I’d probably be too busy proving how much you mean to me.<br><br>
+
+  Distance doesn’t change what I feel.<br>
+  If anything, it makes me more sure of you,<br>
+  more attached to you,<br>
+  and a little impatient to have you closer someday.<br><br>
+
+  Now that you’re my Valentine,<br>
+  don’t think you can escape that easily —<br>
+  I’m getting used to the idea of you being mine,<br>
+  and I kind of like it a lot.<br><br>
+
+  There are many more Valentine’s Days to come,<br>
+  and in all of them, you will be my Valentine — mine.<br><br>
+
+  Advance Happy Valentine’s Day, MY LOVE!!!<br>
+  I love you 🤍🧿
+  </p>
+</div>
+
+<script>
+let noBtn = document.getElementById("noBtn");
+let yesBtn = document.getElementById("yesBtn");
+let note = document.getElementById("note");
+
+let messages = [
+  "Are you sure? 😏",
+  "Come on, think again 💕",
+  "Don’t break my heart 😭",
+  "Just say yes already 😉",
+  "You know you want to 😌"
+];
+
+let yesSize = 20;
+
+noBtn.addEventListener("mouseover", () => {
+  let x = Math.random() * (window.innerWidth - 100);
+  let y = Math.random() * (window.innerHeight - 100);
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+
+  let msg = messages[Math.floor(Math.random() * messages.length)];
+  note.innerText = msg;
+
+  yesSize += 5;
+  yesBtn.style.fontSize = yesSize + "px";
+});
+
+yesBtn.addEventListener("click", () => {
+  document.querySelector("h1").style.display = "none";
+  document.querySelector(".buttons").style.display = "none";
+  note.style.display = "none";
+  document.getElementById("letter").style.display = "block";
+
+  for (let i = 0; i < 120; i++) {
+    let conf = document.createElement("div");
+    conf.innerHTML = "💖";
+    conf.style.position = "fixed";
+    conf.style.left = Math.random() * 100 + "%";
+    conf.style.top = "-10px";
+    conf.style.fontSize = "22px";
+    conf.style.animation = "fall 3s linear";
+    document.body.appendChild(conf);
+    setTimeout(() => conf.remove(), 3000);
+  }
+});
+</script>
+
+<style>
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+</style>
+
+</body>
+</html>
